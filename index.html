@@ -13,64 +13,40 @@
         <div class="row">
             <div class="form-register">
                 <div class="card border-primary">
-                    <div class="h4">REGISTRO DE ALUMNOS</div>
+                    <div class="h4">REGISTRO DE AUTORES</div>
                     <div class="card-body">
-                        <form id="frmAlumno" @submit.prevent="guardarAlumno" @reset.prevent="nuevoAlumno()">
+                        <form id="frmAutores" @submit.prevent="guardarAutor" @reset.prevent="nuevoAutor()">
                             <div class="controls11">
                                 <div class="col-3 col-md-2">CODIGO:</div>
                                 <div class="col-9 col-md-3">
-                                    <input required title="Ingrese un codigo de estudiante valido" 
-                                    pattern="^[US|SM]{2}[IS|LE]{2}[0-9]{6}" class="controls" type="text" v-model="alumno.codigo" name="txtCodigoAlumno" id="txtCodigoAlumno">
+                                    <input required title="Ingrese un codigo de un autor valido" 
+                                    pattern="[0-9]{3,10}" class="controls" type="text" v-model="autor.codigo" >
                                 </div>
                             </div>
                             <div class="controls11">
                                 <div class="col-3 col-md-2">NOMBRE:</div>
                                 <div class="col-9 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                    class="controls" type="text" v-model="alumno.nombre" name="txtNombreAlumno" id="txtNombreAlumno">
+                                    class="controls" type="text" v-model="autor.nombre">
                                 </div>
                             </div>
+                            
                             <div class="controls11">
-                                <div class="col-3 col-md-2">DIRECCION:</div>
-                                <div class="col-9 col-md-6">
-                                    <input required pattern="[0-9#.A-Za-zñÑáéíóúü ]{3,100}"
-                                    class="controls" type="text" v-model="alumno.direccion" name="txtDireccionAlumno" id="txtDireccionAlumno">
-                                </div>
-                            </div>
-                            <div class="controls11">
-                                <div class="col-3 col-md-2">MUNICIPIO:</div>
+                                <div class="col-3 col-md-2">PAIS:</div>
                                 <div class="col-9 col-md-6">
                                     <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                    class="controls" type="text" v-model="alumno.municipio" name="txtMunicipioAlumno" id="txtMunicipioAlumno">
+                                    class="controls" type="text" v-model="autor.pais" >
                                 </div>
                             </div>
-                            <div class="controls11">
-                                <div class="col-3 col-md-2">DEPARTAMENTO:</div>
-                                <div class="col-9 col-md-6">
-                                    <input required pattern="[A-Za-zÑñáéíóú ]{3,75}"
-                                    class="controls" type="text" v-model="alumno.departamento" name="txtDepartamentoAlumno" id="txtDepartamentoAlumno">
-                                </div>
-                            </div>
+                            
                             <div class="controls11">
                                 <div class="col-3 col-md-2">TELEFONO:</div>
                                 <div class="col-9 col-md-6">
                                     <input required pattern="[0-9]{4}-[0-9]{4}"
-                                    class="controls" type="text" v-model="alumno.telefono" name="txtTelefonoAlumno" id="txtTelefonoAlumno">
+                                    class="controls" type="text" v-model="autor.telefono">
                                 </div>
                             </div>
-                            <div class="controls11">
-                                <div class="col-3 col-md-2">FECHA/NACIMIENTO:</div>
-                                <div class="col-9 col-md-6">
-                                    <input class="controls" type="date" v-model="alumno.fecha" name="txtFechaAlumno" id="txtFechaAlumno">
-                                </div>
-                            </div>
-                            <div class="controls11">
-                                <div class="col-3 col-md-2">SEXO:</div>
-                                <div class="col-9 col-md-6">
-                                    <input required pattern="[A-Za-z]{3,75}"
-                                    class="controls" type="text" v-model="alumno.sexo" name="txtSexoAlumno" id="txtSexoAlumno">
-                                </div>
-                            </div>
+                            
                             <div class="row p-1">
                                 
                                 <input class="botons" type="submit" value="Guardar Datos">
@@ -85,25 +61,22 @@
             <h2></h2>
             <div class="table-register">
                 <div class="col-3 col-md-2">
-                    <div class="h5">CONSULTA DE ALUMNOS</div>
+                    <div class="h5">CONSULTA DE AUTORES</div>
                     <div class="card-body">
                         <form class="form-table">
                             <table class="col-9 col-md-6">
                                 <thead>
                                     <tr>
                                         <th>BUSCAR:</th>
-                                        <th colspan="14"><input type="text" @keyup="listarAlumnos()" v-model="buscar" 
-                                            class="form-control" placeholder="Busar por nombre" ></th>
+                                        <th colspan="14"><input type="text" @keyup="listarAutores()" v-model="buscar" 
+                                            class="form-control" placeholder="Buscar por nombre" ></th>
                                     </tr>
                                     <tr>
                                         <th>CODIGO</th>
                                         <th colspan="2">NOMBRE</th>
-                                        <th>Direccion</th>
-                                        <th>Municipio </th>
-                                        <th>Departamento</th>
-                                        <th>Telefono</th>
-                                        <th>Nacimiento</th>
-                                        <th>Sexo</th>
+                                        <th>PAIS</th>
+                                        <th>TELEFONO</th>
+                                        
                                         
                                         
                                         
@@ -111,16 +84,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="item in alumnos" @click='modificarAlumno(item)' :key="item.idAlumno">
+                                    <tr v-for="item in autores" @click='modificarAutor(item)' :key="item.idAutor">
                                         <td>{{item.codigo}}</td>
                                         <td colspan="2">{{item.nombre}}</td>
-                                        <td>{{item.direccion}}</td>
-                                        <td>{{item.municipio}}</td>
-                                        <td>{{item.departamento}}</td>
-                                        <td>{{item.telefono}}</td>
-                                        <td>{{item.fecha}}</td>
-                                        <td colspan="3">{{item.sexo}}</td>
-                                        <td colspan="5"><button @click.prevent="eliminarAlumno(item)" class="botons2">Eliminar</button></td>
+                                        <td>{{item.pais}}</td>
+                                        <td colspan="3">{{item.telefono}}</td>
+                                        <td colspan="5"><button @click.prevent="eliminarAutor(item)" class="botons2">Eliminar</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -138,68 +107,62 @@
             data() {
                 return {
                     buscar: '',
-                    alumnos:[],
+                    autores:[],
                     accion : 'nuevo',
-                    alumno:{
-                        idAlumno:0,
+                    autor:{
+                        idAutor:0,
                         codigo:'',
                         nombre:'',
-                        direccion:'',
-                        municipio:'',
-                        departamento:'',
-                        telefono:'',
-                        fecha:'',
-                        sexo:''
+                        pais:'',
+                        telefono:''
+                        
                     }
                 }
             },
             methods:{
-                nuevoAlumno(){
+                nuevoAutor(){
                     this.accion = 'nuevo';
-                    this.alumno.idAlumno = '';
-                    this.alumno.codigo = '';
-                    this.alumno.nombre = '';
-                    this.alumno.direccion = '';
-                    this.alumno.municipio = '';
-                    this.alumno.departamento = '';
-                    this.alumno.telefono = '';
-                    this.alumno.fecha = '';
-                    this.alumno.sexo = '';
+                    this.autor.idAutor = '';
+                    this.autor.codigo = '';
+                    this.autor.nombre = '';
+                    this.autor.pais = '';
+                    this.autor.telefono = '';
+                    
                 },
-                modificarAlumno(alumno){
+                modificarAutor(autor){
                     this.accion = 'modificar';
-                    this.alumno = alumno;
+                    this.autor = autor;
                 },
-                guardarAlumno(){
-                    this.listarAlumnos();
+                guardarAutor(){
+                    this.listarAutores();
                     if( this.accion==='nuevo' ){
-                        this.alumno.idAlumno = new Date().getTime().toString(16);//las cantidad milisegundos y lo convierte en hexadecimal
-                        this.alumnos.push( JSON.parse(JSON.stringify(this.alumno)) );
+                        this.autor.idAutor = new Date().getTime().toString(16);//las cantidad milisegundos y lo convierte en hexadecimal
+                        this.autores.push( JSON.parse(JSON.stringify(this.autor)) );
                     }else if(this.accion==='modificar'){
                         //hacer la busqueda y modificar el registro
-                        let index = this.alumnos.findIndex(alumno=>alumno.idAlumno==this.alumno.idAlumno);
-                        this.alumnos[index] = JSON.parse(JSON.stringify(this.alumno));
+                        let index = this.autores.findIndex(autor=>autor.idAutor==this.autor.idAutor);
+                        this.autores[index] = JSON.parse(JSON.stringify(this.autor));
                     }else if(this.accion==='eliminar'){
-                        let index = this.alumnos.findIndex(alumno=>alumno.idAlumno==this.alumno.idAlumno);
-                        this.alumnos.splice(index, 1);
+                        let index = this.autores.findIndex(autor=>autor.idAutor==this.autor.idAutor);
+                        this.autor.splice(index, 1);
                     }
-                    localStorage.setItem('alumnos', JSON.stringify(this.alumnos));
-                    this.nuevoAlumno();
+                    localStorage.setItem('autores', JSON.stringify(this.autores));
+                    this.nuevoAutor();
                 },
-                eliminarAlumno(alumno){
-                    if( confirm(`Esta seguro de eliminar el alumno ${alumno.nombre}?`) ){
+                eliminarAutor(autor){
+                    if( confirm(`Esta seguro de eliminar el autor ${autor.nombre}?`) ){
                         this.accion="eliminar";
-                        this.alumno = alumno;
-                        this.guardarAlumno();
+                        this.autor = autor;
+                        this.guardarAutor();
                     }
                 },
-                listarAlumnos(){
-                    this.alumnos = JSON.parse( localStorage.getItem('alumnos') || "[]" )
-                        .filter(alumno=>alumno.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
+                listarAutores(){
+                    this.autores = JSON.parse( localStorage.getItem('autores') || "[]" )
+                        .filter(autor=>autor.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
                 }
             },
             created(){
-                this.listarAlumnos();
+                this.listarAutores();
             }
         }).mount('#app')
     </script>
