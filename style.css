@@ -4,8 +4,94 @@
   box-sizing: border-box;
 }
 
+nav{
+  background: #2fcdcd;
+  height: 80px;
+  width: 100%;
+}
+.enlace{
+  position: absolute;
+  padding: 20px 50px;
+}
+.logo{
+  height: 40px;
+  
+}
+nav ul{
+  float:right;
+  margin-right: 20px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+nav ul li a{
+  color: #fff;
+  font-size: 18px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+li a.active, li a:hover{
+  background: #000090;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: #fff;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+
+@media (max-width: 952px){
+  .enlace{
+    padding-left: 20px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  li a:hover, li a.active{
+    background: none;
+    color: red;
+  }
+  #check:checked ~ ul{
+    left:0;
+  }
+}
+
+
 body {
-  background-image: url('fondo123.jpg');
+  background-image: url('58796.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -16,7 +102,7 @@ body {
   width: 500px;
   background: transparent;
   padding: 30px;
-  margin: 1%;
+  margin: 5%;
   margin-top: 2px;
   border-radius: 15px;
   font-family: 'calibri';
@@ -25,13 +111,13 @@ body {
 }
 
 .form-register div .h4  {
-  color: #24303c;
+  color:whitesmoke;
   font-size: 22px;
   margin-bottom: 20px;
 
 }
 .form-register div .col-3{
-  color: #24303c;
+  color:azure;
   margin-bottom: 10px;
   font-size: 20px;
 }
@@ -51,7 +137,7 @@ body {
 
 .form-register .botons {
   width: 40%;
-  background: #1f53c5;
+  background: blueviolet;
   border: outset;
   padding: 15px;
   color: white;
@@ -61,7 +147,7 @@ body {
 }
 .form-register .botons1 {
   width: 40%;
-  background:yellowgreen;
+  background:green;
   border: outset;
   padding: 15px;
   color: white;
@@ -73,6 +159,7 @@ body {
 
 
 .table-register .h5{
+  color: aliceblue;
   display: flex;
   justify-content: center;
   font-size: 22px;
@@ -129,7 +216,7 @@ thead {
 }
 
 th {
-  color: #24303c;
+  color: whitesmoke;
   padding: 20px 15px ;
   font-size: 20px;
   font-weight: 700;
@@ -137,7 +224,7 @@ th {
 }
 
 td {
-  color: #24303c;
+  color: whitesmoke;
   font-size: 20px;
   padding: 15px;
   border-bottom: solid 1px rgba(255, 255, 255, 0.2);
@@ -151,5 +238,5 @@ tbody tr {
 }
 
 tbody tr:hover {
-  background: rgba(233, 215, 225, 0.4);
+  background: rgba(22, 4, 14, 0.4);
 }
