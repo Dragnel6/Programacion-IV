@@ -116,6 +116,11 @@ body {
   margin-bottom: 20px;
 
 }
+.container div .h4{
+  color:whitesmoke;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
 .form-register div .col-3{
   color:azure;
   margin-bottom: 10px;
@@ -166,6 +171,7 @@ body {
   margin-bottom: 20px;
   
 }
+
 
 
 .table-register .botons2{
