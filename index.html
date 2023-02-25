@@ -195,7 +195,7 @@
                 },
                 listarAlumnos(){
                     this.alumnos = JSON.parse( localStorage.getItem('alumnos') || "[]" )
-                        .filter(alumno=>alumno.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
+                        .filter(alumno=>toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
                 }
             },
             created(){
