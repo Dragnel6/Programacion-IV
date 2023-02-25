@@ -193,7 +193,7 @@
                         this.guardarAlumno();
                     }
                 },
-                listarAlumnos(){
+                listarAlumnos(){  //Lista de alumno
                     this.alumnos = JSON.parse( localStorage.getItem('alumnos') || "[]" )
                         .filter(alumno=>alumno.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1);
                 }
