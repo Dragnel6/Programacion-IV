@@ -62,7 +62,7 @@
                     </form>
                 </div>
             </div>
-            <div class="table-register" ">
+            <div class="table-register">
                 <div class="h5">BUSQUEDA DE MATERIAS</div>
                 <div class="card-body">
                     <table class="table table-dark table-hover">
@@ -98,5 +98,89 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const {createApp} = Vue;
+        createApp({
+            data(){
+                return{
+                db:'',
+                buscar:'',
+                materias:[],
+                alumnos:[],
+                inscripciones:[],
+                inscripcion:{
+                    idInscripcion:1,
+                    accion :'nuevo',
+                    alumno :'',
+                    materias:[]
+                    }
+                }
+            },
+            methods:{
+                nuevaInscripcion(){
+                    this.inscripcion.idInscripcion = '';
+                    this.inscripcion.accion = 'nuevo';
+                    this.inscripcion.alumno = '';
+                    this.inscripcion.materias = [];
+                },
+                modificarInscripcion(inscripcion){
+                    this.accion = 'modificar';
+                    this.inscripcion = inscripcion;
+                },
+                guardarInscripcion(){
+                    let store = this.abrirStore('tblinscripciones','readwrite');
+                    if(this.accion==='nuevo'){
+                      this.inscripcion.idInscripcion = new Date().getTime().toString(16); //las cantidad milisegundo y lo convierte en hexadecimal
+                    }
+                    let query = store.put( JSON.parse( JSON.stringify(this.inscripcion)));
+                    query.onsuccess = resp=>{
+                     this.nuevaInscripcion();
+                     this.listarInscripciones();
+                    };
+                    query.onerror = err=>{
+                     console.error('ERROR al guardar inscripcion', err);
+                    };
+                },
+                eliminarInscripcion(inscripcion){
+                    if(confirm(`Esta seguro de eliminar la inscripcion ${inscripcion.alumno.nombre}?`)){
+                        let store = this.abrirStore('tblinscripciones', 'readwrite'),
+                        req = store.delete(inscripcion.idInscripcion);
+                        req.onsuccess = res=>{
+                          this.listarInscripciones();
+                        };
+                        req.onerror = err=>{
+                          console.error('ERROR al guardar inscripcion');
+                        };
+                    }
+                },
+                listarInscripciones(){
+                    let store = this.abrirStore('tblinscripciones', 'readonly'),
+                    data = store.getAll();
+                    data.onsuccess = resp=>{
+                       this.inscripciones = data.result
+                      .filter(inscripcion=>inscripcion.alumno.nombre.toLowerCase().indexOf(this.buscar.toLowerCase())>-1 || 
+                      inscripcion.alumno.codigo.indexOf(this.buscar)>-1);
+                    };
+                },
+                abrirBD(){
+                    let indexDB = indexedDB.open('db_sistema_academico',1);
+                    indexDB.onsuccess = e=>{
+                      db = e.target.result;
+                      this.listarInscripciones();
+                    };
+                    indexDB.onerror = e=>{
+                      console.error('ERROR al crear, abrir la BD',e);
+                    }; 
+                },
+                abrirStore(store,modo){
+                 let ltx = db.transaction(store,modo);
+                  return ltx.objectStore(store);
+                }
+            },
+            created(){
+             this.abrirBD();
+            }
+       }).mount('#app')
+    </script>
 </body>
 </html>
