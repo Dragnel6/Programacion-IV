@@ -27,11 +27,14 @@ var db,
                     tblmatriculas = req.createObjectStore('tblmatriculas', {
                         keyPath: 'idMatricula'
                     });
+                    tblinscripcion = req.createObjectStore('tblinscripcion', {
+                        keyPath: 'idInscripcion'
+                    });
 
-                tbldocentes.createIndex('idDocente', 'idDocente', {
+                tblalumnos.createIndex('idAlumno', 'idAlumno', {
                     unique: true
                 });
-                tbldocentes.createIndex('codigo', 'codigo', {
+                tblalumnos.createIndex('codigo', 'codigo', {
                     unique: true
                 });
             };

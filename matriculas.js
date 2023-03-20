@@ -83,32 +83,32 @@ Vue.component('matriculas', {
     },
     template : `
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="form-register">
                     <div class="card border-primary">
-                        <div class="card-header bg-primary text-white">REGISTRO DE MATRICULAS</div>
+                        <div class="h4">REGISTRO DE MATRICULAS</div>
                         <div class="card-body">
                             <form id="frmMatricula" @submit.prevent="guardarMatricula" @reset.prevent="nuevoMatricula()">
-                                <div class="row p-1">
+                                <div class="controls11">
                                     <div class="col-3 col-md-2">ALUMNO:</div>
-                                    <div class="col-9 col-md-3">
+                                    <div class="controls">
                                         <v-select-alumno required v-model="matricula.alumno" 
                                             :options="alumnos">Por favor seleccione un alumno</v-select-alumno>
                                     </div>
                                 </div>
-                                <div class="row p-1">
+                                <div class="controls11">
                                     <div class="col-3 col-md-2">FECHA:</div>
                                     <div class="col-9 col-md-6">
-                                        <input required class="form-control" type="date" v-model="matricula.fecha">
+                                        <input required class="controls" type="date" v-model="matricula.fecha">
                                     </div>
                                 </div>
-                                <div class="row p-1">
+                                <div class="controls11">
                                     <div class="col-3 col-md-2"><label for="chkPagoMatricula">ACTUAZACION PAGO:</label></div>
                                     <div class="col-9 col-md-6">
                                         <input class="form-check-input" type="checkbox" v-model="matricula.pago" id="chkPagoMatricula">
                                     </div>
                                 </div>
                                 <div class="row p-1">
-                                    <div class="col-3 col-md-2">
+                                    <div class="col-9 col-md-10">
                                         <img :src='matricula.comprobante' width="50" height="50"/>
                                     </div>
                                     <div class="col-9 col-md-10">
@@ -119,20 +119,20 @@ Vue.component('matriculas', {
                                     </div>
                                 </div>
                                 <div class="row p-1">
-                                    <div class="col col-md-6">
-                                        <input class="btn btn-success" type="submit" value="Guardar Datos">
-                                    </div>
-                                    <div class="col col-md-6">
-                                        <input class="btn btn-warning" type="reset" value="Nuevo Registro">
-                                    </div>
+                                    
+                                    <input class="botons" type="submit" value="Guardar Datos">
+                                    
+                                    
+                                    <input class="botons1" type="reset" value="Nuevo Registro">
+                                    
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="table-register">
                     <div class="card text-bg-light">
-                        <div class="card-header">CONSULTA DE MATRICULAS</div>
+                        <div class="h5">CONSULTA DE MATRICULAS</div>
                         <div class="card-body">
                             <form>
                                 <table class="table table-dark table-hover">

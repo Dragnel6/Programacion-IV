@@ -68,44 +68,44 @@ Vue.component('materias', {
     },
     template : `
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="form-register">
                     <div class="card border-primary">
-                        <div class="card-header bg-primary text-white">REGISTRO DE MATERIAS</div>
+                        <div class="h4">REGISTRO DE MATERIAS</div>
                         <div class="card-body">
                             <form id="frmMateria" @submit.prevent="guardarMateria" @reset.prevent="nuevoMateria()">
-                                <div class="row p-1">
+                                <div class="controls11">
                                     <div class="col-3 col-md-2">CODIGO:</div>
                                     <div class="col-9 col-md-3">
-                                        <input required pattern="[0-9]{3}" class="form-control" type="text" v-model="materia.codigo">
+                                        <input required pattern="[0-9]{3}" class="controls" type="text" v-model="materia.codigo">
                                     </div>
                                 </div>
-                                <div class="row p-1">
+                                <div class="controls11">
                                     <div class="col-3 col-md-2">NOMBRE:</div>
                                     <div class="col-9 col-md-6">
-                                        <input required pattern="[a-zA-Z ]{3,65}" class="form-control" type="text" v-model="materia.nombre">
+                                        <input required pattern="[a-zA-Z ]{3,65}" class="controls" type="text" v-model="materia.nombre">
                                     </div>
                                 </div>
-                                <div class="row p-1">
+                                <div class="controls11">
                                     <div class="col-3 col-md-2">UV:</div>
                                     <div class="col-9 col-md-6">
-                                        <input required pattern="[0-9]{1,3}" class="form-control" type="text" v-model="materia.uv">
+                                        <input required pattern="[0-9]{1,3}" class="controls" type="text" v-model="materia.uv">
                                     </div>
                                 </div>
                                 <div class="row p-1">
-                                    <div class="col col-md-6">
-                                        <input class="btn btn-success" type="submit" value="Guardar Datos">
-                                    </div>
-                                    <div class="col col-md-6">
-                                        <input class="btn btn-warning" type="reset" value="Nuevo Registro">
-                                    </div>
+                                    
+                                    <input class="botons" type="submit" value="Guardar Datos">
+                                    
+                                
+                                    <input class="botons1" type="reset" value="Nuevo Registro">
+                                   
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="table-register">
                     <div class="card text-bg-light">
-                        <div class="card-header">CONSULTA DE MATERIAS</div>
+                        <div class="h5">CONSULTA DE MATERIAS</div>
                         <div class="card-body">
                             <form>
                                 <table class="table table-dark table-hover">
@@ -126,7 +126,7 @@ Vue.component('materias', {
                                             <td>{{materia.codigo}}</td>
                                             <td>{{materia.nombre}}</td>
                                             <td>{{materia.uv}}</td>
-                                            <td><button @click.prevent="eliminarMateria(materia)" class="btn btn-danger">Eliminar</button></td>
+                                            <td><button @click.prevent="eliminarMateria(materia)" class="botons2">Eliminar</button></td>
                                         </tr>
                                     </tbody>
                                 </table>
