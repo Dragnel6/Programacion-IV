@@ -62,7 +62,12 @@ class AlumnosController extends Controller
           'codigo'=>$request['codigo'],
           'nombre'=>$request['nombre'],
           'direccion'=>$request['direccion'],
-          'municipio'=>$request['municipio']
+          'municipio'=>$request['municipio'],
+          'departamento'=>$request['departamento'],
+          'telefono'=>$request['telefono'],
+          'nacimiento'=>$request['nacimiento'],
+          'sexo'=>$request['sexo'],
+          'dui'=>$request['dui']
         ]);      
         return response()->json(['msg'=>'ok'], 200);
     }
